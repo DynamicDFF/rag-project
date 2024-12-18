@@ -5,7 +5,8 @@ st.title("AWS Bedrock 기반 RAG 챗봇")
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
-
+if "memory" not in st.session_state:
+    st.session_state.memory = be.buff_memory()
 # 이전 채팅 기록 표시
 for message in st.session_state.chat_history:
     with st.chat_message(message["role"]):
@@ -22,7 +23,7 @@ if input_text:
     st.session_state.chat_history.append({"role": "user", "text": input_text})
 
     # Bedrock 기반 RAG 응답 생성
-    chat_response = be.query_bedrock_rag(input_text)
+    chat_response = be.cnvs_chain(input_text, memory=st.session_state.memory)
 
     # 생성된 응답 출력
     with st.chat_message("assistant"):

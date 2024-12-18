@@ -13,8 +13,8 @@ import json
 import os
 
 # AWS 세션 설정 (Bedrock)
-session = boto3.Session(profile_name="default", region_name="ap-northeast-2")
-bedrock_client = session.client("bedrock-runtime", region_name="ap-northeast-2")
+session = boto3.Session(profile_name="default", region_name="us-west-2")
+bedrock_client = session.client("bedrock-runtime", region_name="us-west-2")
 
 def bedrock_chatbot():
     bedrock_llm = BedrockChat(
